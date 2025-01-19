@@ -8441,6 +8441,24 @@
                 },
                 on: {}
             });
+            if (document.querySelector(".user-tickets__slider")) new core(".user-tickets__slider", {
+                modules: [ Navigation, Pagination ],
+                observer: true,
+                observeParents: true,
+                slidesPerView: 1,
+                spaceBetween: 10,
+                speed: 400,
+                simulateTouch: false,
+                autoHeight: true,
+                pagination: {
+                    el: ".user-tickets__pagination",
+                    clickable: true
+                },
+                navigation: {
+                    prevEl: ".user-tickets__prev-btn",
+                    nextEl: ".user-tickets__next-btn"
+                }
+            });
         }
         window.addEventListener("load", (function(e) {
             initSliders();
