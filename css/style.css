@@ -1138,7 +1138,7 @@ ol li {
   transition: .1s;
   margin: 0.75rem 0px 0px 0px;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.2083333333;
 }
 
@@ -1794,7 +1794,11 @@ ol li {
 }
 
 .article__content p:not(:last-child),
-.article__wrapper p:not(:last-child) {
+.article__content ul:not(:last-child),
+.article__content ol:not(:last-child),
+.article__wrapper p:not(:last-child),
+.article__wrapper ul:not(:last-child),
+.article__wrapper ol:not(:last-child) {
   margin-bottom: 1.875rem;
 }
 
@@ -4167,7 +4171,11 @@ span.flatpickr-weekday {
   }
 
   .article__content p:not(:last-child),
-  .article__wrapper p:not(:last-child) {
+  .article__content ul:not(:last-child),
+  .article__content ol:not(:last-child),
+  .article__wrapper p:not(:last-child),
+  .article__wrapper ul:not(:last-child),
+  .article__wrapper ol:not(:last-child) {
     margin-bottom: 1.25rem;
   }
 }
