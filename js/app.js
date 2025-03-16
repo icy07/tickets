@@ -4678,7 +4678,7 @@
                 };
                 this._this = this;
                 if (this.config.init) {
-                    const selectItems = data ? document.querySelectorAll(data) : document.querySelectorAll("select");
+                    const selectItems = data ? document.querySelectorAll(data) : document.querySelectorAll("select[data-sel]");
                     if (selectItems.length) {
                         this.selectsInit(selectItems);
                         this.setLogging(`Проснулся, построил селектов: (${selectItems.length})`);
@@ -10365,6 +10365,30 @@
             const select1 = document.getElementById("fromCity");
             const select2 = document.getElementById("toCity");
             swapSelectedValues(select1, select2);
+        }));
+        document.addEventListener("DOMContentLoaded", (function() {
+            const addButton = document.querySelector(".buy-ticket__add-btn");
+            const deleteButton = document.querySelector(".buy-ticket__delete-btn");
+            const ticketsContainer = document.querySelector(".buy-ticket__tickets");
+            if (addButton && deleteButton && ticketsContainer) {
+                addButton.addEventListener("click", (function() {
+                    const originalForm = ticketsContainer.querySelector("form:first-child");
+                    if (!originalForm) return;
+                    const newForm = originalForm.cloneNode(true);
+                    const totalForms = ticketsContainer.querySelectorAll("form").length;
+                    newForm.querySelector(".buy-ticket__header-title span").textContent = totalForms + 1;
+                    newForm.querySelectorAll('input[type="text"]').forEach((input => input.value = ""));
+                    newForm.querySelectorAll("select").forEach((select => select.selectedIndex = 0));
+                    ticketsContainer.appendChild(newForm);
+                    deleteButton.classList.remove("_disabled");
+                }));
+                deleteButton.addEventListener("click", (function() {
+                    const forms = ticketsContainer.querySelectorAll("form");
+                    if (forms.length <= 1) return;
+                    forms[forms.length - 1].remove();
+                    if (ticketsContainer.querySelectorAll("form").length === 1) deleteButton.classList.add("_disabled");
+                }));
+            }
         }));
         isWebp();
         menuInit();
